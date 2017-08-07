@@ -33,7 +33,7 @@ fetchData() {
     let latlng = String(lat) + "," + String(lng)
     let params = {
       term: 'ice cream',
-      location: latlng,
+      location: 'wall street, ny',
       limit: '30',
     }
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
+    backgroundColor: 'rgb(148,212,214)',
   },
   welcome: {
     fontSize: 30,

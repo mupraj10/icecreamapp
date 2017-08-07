@@ -30,16 +30,19 @@ class Results extends Component {
   render() {
       //  console.log(this.state);
     return (
-      <View>
-        <TouchableOpacity
-          style={{borderRadius: 7, padding: 10,  backgroundColor: '#F74A4A'}}
-          onPress={() => (this.backButton())}>
-          <Text style={{fontSize: 15, color:'#FFFF' }}>FIND IT</Text>
-        </TouchableOpacity>
       
-        <Text style={styles.header}>Ice Cream Choices</Text>
+      <View>
+      <TouchableOpacity
+          style={{borderRadius: 7, justifyContent: 'flex-start', padding: 10,  backgroundColor: '#F74A4A'}}
+          onPress={() => (this.backButton())}>
+          <Text style={{fontSize: 15, color:'#FFFF' }}>More Ice Cream</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.header}>Where To Go: </Text>
+        
+
         <ListView
-          style={{marginTop: 100}}
+          style={{marginTop: 40}}
           initialListSize={10}
           dataSource={this.state.results}
           renderRow={(result) => { return this.renderResult(result)}}
@@ -80,13 +83,13 @@ class Results extends Component {
         <TouchableOpacity
           style={{borderRadius: 7, padding: 10,  backgroundColor: '#F74A4A'}}
           onPress={() => (this.fetchPlace(result))}>
-          <Text style={{fontSize: 15, color:'#FFFF' }}>FIND IT</Text>
+          <Text style={{fontSize: 10, color:'#FFFF' }}>FIND IT</Text>
         </TouchableOpacity>
         
         <TouchableOpacity
           style={{borderRadius: 7, padding: 10,  backgroundColor: '#F74A4A'}}
           onPress={() => Linking.openURL(result.url)}>
-          <Text style={{fontSize: 15, color:'#FFFF' }}>YELP IT</Text>
+          <Text style={{fontSize: 10, color:'#FFFF' }}>YELP IT</Text>
         </TouchableOpacity>
     </View >
 
@@ -100,7 +103,7 @@ const styles = StyleSheet.create({
   header:{
     textAlign: 'center',
     position: 'relative',
-    top: 60,
+    top: 40,
     fontSize: 30
   },
   resultRow: {
