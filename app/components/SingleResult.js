@@ -10,6 +10,8 @@ import {
 
 import MapView from 'react-native-maps';
 
+import call from 'react-native-phone-call'
+
 class SingleResult extends Component {
   constructor(props) {
     super(props)
@@ -51,13 +53,21 @@ linkToMaps(lat, lon) {
 }
 
 
+
   render() {
       //  console.log("in simple", this.state);
        const result = this.state.results;
        const coordinates = result.coordinates;
        const lat = coordinates.latitude;
        const long = coordinates.longitude;
-      //  console.log(coordinates.latitude)
+       const numberPlus = result.phone.toString();
+       const number = numberPlus.slice(2);
+       console.log(typeof (number), console.log(number));
+
+       const phoneArgs = {
+         number: '3479678580',
+         prompt: true
+       };
 
     const openOrClosed = (result.is_closed) ? (<Image source={require('../../images/closed.png')} style={{height: 50, width: 50}} />) : 
     (<Image source={require('../../images/open.png')} style={{height: 50, width: 50}} />)
@@ -65,7 +75,6 @@ linkToMaps(lat, lon) {
      const placeImage = (result.image_url) ? (<Image source={{uri: result.image_url}} style={{width: 80, height: 80, justifyContent: 'flex-start'}} /> )
     : (<Image source={require('../../images/default.png')} style={{width: 80, height: 80, justifyContent: 'flex-start'}} />)
 
-   
     return (
     
 
@@ -73,7 +82,9 @@ linkToMaps(lat, lon) {
       <Text style={{fontWeight: 'bold', fontSize:18}}>{`${result.name}`}</Text>
       {openOrClosed}
       <Text style={{fontWeight: 'bold', fontSize:14}}>{`${result.location.display_address[0]}`}</Text>
-      <Text style={{fontWeight: 'bold', fontSize:14}}>{`${result.display_phone}`}</Text>
+            <Text style={{fontWeight: 'bold', fontSize:14}}>{`${result.display_phone}`}</Text>
+
+      
       
         <Text style={styles.paragraph}>
           
@@ -92,6 +103,7 @@ linkToMaps(lat, lon) {
           />
 
         </MapView>
+
 <View style={styles.button}>
 
           <TouchableOpacity

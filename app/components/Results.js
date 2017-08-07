@@ -73,6 +73,10 @@ class Results extends Component {
     const placeImage = (result.image_url) ? (<Image source={{uri: result.image_url}} style={{width: 80, height: 80, justifyContent: 'flex-start'}} /> )
     : (<Image source={require('../../images/default.png')} style={{width: 80, height: 80, justifyContent: 'flex-start'}} />)
 
+    // const ratingStars = for(var i =0; i <result.rating; i++){
+    //   return  <Image source={require('../../images/rating.png')} style={{ height: 50, width: 50 }} />
+    // }
+
     return (
    
       <View style={styles.resultRow} >
