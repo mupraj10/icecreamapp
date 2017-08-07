@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navigator } from 'react-native-deprecated-custom-components'
 import Search from '../components/Search'
 import Results from '../components/Results'
+import SingleResult from '../components/SingleResult'
 
 class AppNavigator extends Component {
 

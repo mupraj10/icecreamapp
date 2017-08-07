@@ -43,7 +43,7 @@ fetchData() {
   //   .then(data => console.log(data))
   //   .catch(err => err)
   // }
-  console.log(nav);
+  console.log(params);
     return yelp.search(params)
     .then((searchResults) => {
       nav.push({
