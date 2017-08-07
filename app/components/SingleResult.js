@@ -18,6 +18,7 @@ class SingleResult extends Component {
       mapRegion: Object.assign({}, props.data.coordinates, {latitudeDelta: 0.0922, longitudeDelta: 0.0421 })
     }
      this.backButton = this.backButton.bind(this)
+     
 
   }
 
@@ -42,16 +43,27 @@ onRegionChange(region) {
       })
   }
 
+linkToMaps(lat, lon) {
+  const rla = this.region.latitude;
+  const rlo = this.region.longitude;
+  const url = `http://maps.apple.com/?saddr=${rla},${rlo}&daddr=${la},${lo}&dirflg=d`;
+  return Linking.openURL(url);
+}
+
   render() {
        console.log("in simple", this.state);
        const result = this.state.results;
-       const coordinates = result.coordinates
+       const coordinates = result.coordinates;
+       const lat = coordinates.latitude;
+       const long = coordinates.longitude;
+       console.log(coordinates)
 
     return (
     
 
       <View style={styles.container}>
       <Text style={{fontWeight: 'bold', fontSize:18}}>{`${result.name}`}</Text>
+      <Text style={{fontWeight: 'bold', fontSize:14}}>{`${result.location.display_address[0]}`}</Text>
         <Text style={styles.paragraph}>
           
           <Image source={{ uri: result.image_url }}
@@ -70,13 +82,19 @@ onRegionChange(region) {
           />
 
         </MapView>
-
+<View style={styles.button}>
         <TouchableOpacity
           style={{ borderRadius: 7, padding: 10, backgroundColor: '#F74A4A' }}
-          onPress={() => (this.backButton())}>
-          <Text style={{ fontSize: 10, color: '#FFFF' }}>FIND IT</Text>
+          onPress={() => (this.linkToMaps(lat, long))}>
+          <Text style={{ fontSize: 10, color: '#FFFF' }}>Directions</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity
+          style={{borderRadius: 7, padding: 10,  backgroundColor: '#F74A4A'}}
+          onPress={() => Linking.openURL(result.url)}>
+          <Text style={{fontSize: 10, color:'#FFFF' }}>YELP IT</Text>
+        </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -99,6 +117,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#34495e',
   },
+  button:{
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    marginBottom: 20,
+    padding: 10,
+  }
 });
 module.exports = SingleResult
 

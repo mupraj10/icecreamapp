@@ -33,7 +33,7 @@ class Results extends Component {
       
       <View>
       <TouchableOpacity
-          style={{borderRadius: 7, justifyContent: 'flex-start', padding: 10,  backgroundColor: '#F74A4A'}}
+          style={{borderRadius: 10, justifyContent: 'flex-start', padding: 10,  backgroundColor: '#F74A4A'}}
           onPress={() => (this.backButton())}>
           <Text style={{fontSize: 15, color:'#FFFF' }}>More Ice Cream</Text>
         </TouchableOpacity>
@@ -86,11 +86,7 @@ class Results extends Component {
           <Text style={{fontSize: 10, color:'#FFFF' }}>FIND IT</Text>
         </TouchableOpacity>
         
-        <TouchableOpacity
-          style={{borderRadius: 7, padding: 10,  backgroundColor: '#F74A4A'}}
-          onPress={() => Linking.openURL(result.url)}>
-          <Text style={{fontSize: 10, color:'#FFFF' }}>YELP IT</Text>
-        </TouchableOpacity>
+   
     </View >
 
     )
@@ -103,7 +99,7 @@ const styles = StyleSheet.create({
   header:{
     textAlign: 'center',
     position: 'relative',
-    top: 40,
+    top: 20,
     fontSize: 30
   },
   resultRow: {
