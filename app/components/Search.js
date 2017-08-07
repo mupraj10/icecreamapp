@@ -50,6 +50,7 @@ fetchData() {
         ident: "Results",
         data: searchResults
       })
+      console.log(searchResults)
     })
     .catch(err => err)
   }

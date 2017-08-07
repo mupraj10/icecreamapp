@@ -15,7 +15,7 @@ class SingleResult extends Component {
     super(props)
     this.state = {
       results: props.data,
-      mapRegion: Object.assign({}, props.data.coordinates, {latitudeDelta: 0.0922, longitudeDelta: 0.0421 })
+      mapRegion: Object.assign({}, props.data.coordinates, {latitudeDelta: 0.005, longitudeDelta: 0.005 })
     }
      this.backButton = this.backButton.bind(this)
      
@@ -44,19 +44,19 @@ onRegionChange(region) {
   }
 
 linkToMaps(lat, lon) {
-  const rla = this.region.latitude;
-  const rlo = this.region.longitude;
-  const url = `http://maps.apple.com/?saddr=${rla},${rlo}&daddr=${la},${lo}&dirflg=d`;
+  const rla = 40.7049948;
+  const rlo = -74.0089752;
+  const url = `http://maps.apple.com/?saddr=${rla},${rlo}&daddr=${lat},${lon}&dirflg=d`;
   return Linking.openURL(url);
 }
 
   render() {
-       console.log("in simple", this.state);
+      //  console.log("in simple", this.state);
        const result = this.state.results;
        const coordinates = result.coordinates;
        const lat = coordinates.latitude;
        const long = coordinates.longitude;
-       console.log(coordinates)
+      //  console.log(coordinates.latitude)
 
     return (
     
@@ -64,6 +64,7 @@ linkToMaps(lat, lon) {
       <View style={styles.container}>
       <Text style={{fontWeight: 'bold', fontSize:18}}>{`${result.name}`}</Text>
       <Text style={{fontWeight: 'bold', fontSize:14}}>{`${result.location.display_address[0]}`}</Text>
+      <Text style={{fontWeight: 'bold', fontSize:14}}>{`${result.display_phone}`}</Text>
         <Text style={styles.paragraph}>
           
           <Image source={{ uri: result.image_url }}
@@ -83,17 +84,22 @@ linkToMaps(lat, lon) {
 
         </MapView>
 <View style={styles.button}>
+
+          <TouchableOpacity
+            onPress={() => Linking.openURL(result.url)}>
+            <Image source={require('../../images/cone.png')} style={{ height: 50, width: 50 }} />
+          </TouchableOpacity>
+
         <TouchableOpacity
-          style={{ borderRadius: 7, padding: 10, backgroundColor: '#F74A4A' }}
           onPress={() => (this.linkToMaps(lat, long))}>
-          <Text style={{ fontSize: 10, color: '#FFFF' }}>Directions</Text>
+          <Image source={require('../../images/directions.png')} style={{height: 50, width: 50}} />
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={{borderRadius: 7, padding: 10,  backgroundColor: '#F74A4A'}}
           onPress={() => Linking.openURL(result.url)}>
-          <Text style={{fontSize: 10, color:'#FFFF' }}>YELP IT</Text>
+          <Image source={require('../../images/yelp-icon.png')} style={{height: 50, width: 50}} />
         </TouchableOpacity>
+
         </View>
       </View>
     )
@@ -122,7 +128,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'flex-start',
     marginBottom: 20,
-    padding: 10,
+    padding:10
   }
 });
 module.exports = SingleResult

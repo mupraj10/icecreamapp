@@ -33,7 +33,7 @@ class Results extends Component {
       
       <View>
       <TouchableOpacity
-          style={{borderRadius: 10, justifyContent: 'flex-start', padding: 10,  backgroundColor: '#F74A4A'}}
+          style={{borderRadius: 10, justifyContent: 'flex-start', padding: 5,  top: 25, backgroundColor: '#F74A4A'}}
           onPress={() => (this.backButton())}>
           <Text style={{fontSize: 15, color:'#FFFF' }}>More Ice Cream</Text>
         </TouchableOpacity>
@@ -81,7 +81,7 @@ class Results extends Component {
           <Text>Phone: {`${result.display_phone}`}</Text>
         </View>
         <TouchableOpacity
-          style={{borderRadius: 7, padding: 10,  backgroundColor: '#F74A4A'}}
+          style={{borderRadius: 7, padding: 10,  backgroundColor: '#FF8F98'}}
           onPress={() => (this.fetchPlace(result))}>
           <Text style={{fontSize: 10, color:'#FFFF' }}>FIND IT</Text>
         </TouchableOpacity>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
   header:{
     textAlign: 'center',
     position: 'relative',
-    top: 20,
+    top: 30,
     fontSize: 30
   },
   resultRow: {
