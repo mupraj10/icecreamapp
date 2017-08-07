@@ -34,7 +34,7 @@ fetchData() {
     let params = {
       term: 'ice cream',
       location: 'wall street, ny',
-      limit: '30',
+      limit: '25',
     }
 
     let nav = this.props.navigator

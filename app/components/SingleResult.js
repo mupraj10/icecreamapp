@@ -35,11 +35,11 @@ class SingleResult extends Component {
 onRegionChange(region) {
   this.setState({ region });
 }
+
  backButton() {
       let nav = this.props.navigator
       nav.push({
-        ident: "Results",
-        data: this.props.data
+        ident: "Search",
       })
   }
 
@@ -50,6 +50,7 @@ linkToMaps(lat, lon) {
   return Linking.openURL(url);
 }
 
+
   render() {
       //  console.log("in simple", this.state);
        const result = this.state.results;
@@ -58,17 +59,25 @@ linkToMaps(lat, lon) {
        const long = coordinates.longitude;
       //  console.log(coordinates.latitude)
 
+    const openOrClosed = (result.is_closed) ? (<Image source={require('../../images/closed.png')} style={{height: 50, width: 50}} />) : 
+    (<Image source={require('../../images/open.png')} style={{height: 50, width: 50}} />)
+
+     const placeImage = (result.image_url) ? (<Image source={{uri: result.image_url}} style={{width: 80, height: 80, justifyContent: 'flex-start'}} /> )
+    : (<Image source={require('../../images/default.png')} style={{width: 80, height: 80, justifyContent: 'flex-start'}} />)
+
+   
     return (
     
 
       <View style={styles.container}>
       <Text style={{fontWeight: 'bold', fontSize:18}}>{`${result.name}`}</Text>
+      {openOrClosed}
       <Text style={{fontWeight: 'bold', fontSize:14}}>{`${result.location.display_address[0]}`}</Text>
       <Text style={{fontWeight: 'bold', fontSize:14}}>{`${result.display_phone}`}</Text>
+      
         <Text style={styles.paragraph}>
           
-          <Image source={{ uri: result.image_url }}
-            style={{ width: 150, height: 150, justifyContent: 'flex-start' }} />
+          {placeImage}
         </Text>
 
         <MapView
@@ -86,7 +95,7 @@ linkToMaps(lat, lon) {
 <View style={styles.button}>
 
           <TouchableOpacity
-            onPress={() => Linking.openURL(result.url)}>
+            onPress={() => this.backButton()}>
             <Image source={require('../../images/cone.png')} style={{ height: 50, width: 50 }} />
           </TouchableOpacity>
 

@@ -28,14 +28,15 @@ class Results extends Component {
  
 
   render() {
+
       //  console.log(this.state);
     return (
       
       <View>
       <TouchableOpacity
-          style={{borderRadius: 10, justifyContent: 'flex-start', padding: 5,  top: 25, backgroundColor: '#F74A4A'}}
+          style={{borderRadius: 10, justifyContent: 'flex-start', padding: 5,  top: 25, backgroundColor: '#C9ADB0'}}
           onPress={() => (this.backButton())}>
-          <Text style={{fontSize: 15, color:'#FFFF' }}>More Ice Cream</Text>
+          <Text style={{fontSize: 15, color:'#FFFF' }}>Check Other Location</Text>
         </TouchableOpacity>
 
         <Text style={styles.header}>Where To Go: </Text>
@@ -67,23 +68,25 @@ class Results extends Component {
         ident: "Search"
       })
   }
-
+    
   renderResult(result) {
+    const placeImage = (result.image_url) ? (<Image source={{uri: result.image_url}} style={{width: 80, height: 80, justifyContent: 'flex-start'}} /> )
+    : (<Image source={require('../../images/default.png')} style={{width: 80, height: 80, justifyContent: 'flex-start'}} />)
+
     return (
    
       <View style={styles.resultRow} >
     
-        <Image source={{uri: result.image_url}}
-          style={{width: 80, height: 80, justifyContent: 'flex-start'}} />
+        {placeImage}
         <View style={{flexDirection: 'column', justifyContent: 'center'}}>
           <Text style={{fontWeight: 'bold'}}>{`${result.name}`}</Text>
           <Text>Rating: {`${result.rating}`}</Text>
           <Text>Phone: {`${result.display_phone}`}</Text>
         </View>
         <TouchableOpacity
-          style={{borderRadius: 7, padding: 10,  backgroundColor: '#FF8F98'}}
+          style={{borderRadius: 7, padding: 10,  backgroundColor: '#CA7179'}}
           onPress={() => (this.fetchPlace(result))}>
-          <Text style={{fontSize: 10, color:'#FFFF' }}>FIND IT</Text>
+          <Text style={{fontSize: 10, color:'#FFFF' }}>GO HERE!</Text>
         </TouchableOpacity>
         
    
